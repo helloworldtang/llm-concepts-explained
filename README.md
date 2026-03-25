@@ -2,24 +2,40 @@
 
 > 从零理解 AI 应用开发的核心概念，配合可运行代码示例
 
-## 📚 文档
-
-- **[完整概念讲解](docs/concepts.md)** - 详细讲解每个概念的区别与联系
-
 ## 🚀 快速开始
 
+### 1. 安装依赖
+
 ```bash
-# 安装依赖
 pip install openai
+```
 
-# 设置 API Key
-export OPENAI_API_KEY="sk-xxxxxxxx"
+### 2. 设置 API Key
 
-# 运行示例
-python examples/01_llm_basics.py      # LLM 基础
-python examples/03_function_call.py   # Function Call
-python examples/04_agent.py           # Agent 智能体
-python examples/06_comparison.py      # 概念对比
+```bash
+# macOS/Linux
+export OPENAI_API_KEY='sk-xxxxxxxx'
+
+# Windows
+set OPENAI_API_KEY=sk-xxxxxxxx
+```
+
+### 3. 运行示例
+
+```bash
+cd examples
+
+# LLM 基础（最简单）
+python 01_llm_simple.py
+
+# Function Call 函数调用
+python 03_function_call_simple.py
+
+# Agent 智能体
+python 04_agent_simple.py
+
+# 概念对比演示
+python 06_comparison.py
 ```
 
 ## 📁 项目结构
@@ -28,14 +44,17 @@ python examples/06_comparison.py      # 概念对比
 llm-concepts-explained/
 ├── README.md
 ├── docs/
-│   └── concepts.md          # 完整概念文档
+│   └── concepts.md              # 完整概念文档
 └── examples/
-    ├── 01_llm_basics.py     # LLM 基础调用
-    ├── 02_workflow.py       # 工作流示例
-    ├── 03_function_call.py  # 函数调用示例
-    ├── 04_agent.py          # 智能体示例
-    ├── 05_skill.py          # 技能系统示例
-    └── 06_comparison.py     # 概念对比演示
+    ├── 01_llm_simple.py         # ✅ LLM 基础（推荐先跑这个）
+    ├── 01_llm_basics.py         # LLM 基础（完整版）
+    ├── 02_workflow.py           # Workflow 工作流
+    ├── 03_function_call_simple.py  # ✅ Function Call（推荐）
+    ├── 03_function_call.py      # Function Call（完整版）
+    ├── 04_agent_simple.py       # ✅ Agent 智能体（推荐）
+    ├── 04_agent.py              # Agent 智能体（完整版）
+    ├── 05_skill.py              # Skill 技能系统
+    └── 06_comparison.py         # 概念对比演示
 ```
 
 ## 🧠 概念速查
@@ -50,7 +69,31 @@ llm-concepts-explained/
 | **Agent** | 智能体 | 能自主规划执行的 AI 系统 |
 | **OpenClaw** | Agent 框架 | 开源的多渠道 Agent 平台 |
 
-## 🔗 概念关系
+## ⚠️ 常见问题
+
+### Q: 运行报错 "No module named 'openai'"
+
+```bash
+pip install openai
+```
+
+### Q: 报错 "OPENAI_API_KEY not found"
+
+设置环境变量：
+```bash
+export OPENAI_API_KEY='sk-xxxxxxxx'
+```
+
+或者在代码中直接设置：
+```python
+client = OpenAI(api_key="sk-xxxxxxxx")
+```
+
+### Q: 报错 "Incorrect API key provided"
+
+检查 API Key 是否正确，确保以 `sk-` 开头。
+
+## 📊 概念关系
 
 ```
 LLM (基础能力)
@@ -68,23 +111,10 @@ LLM (基础能力)
          └──→ OpenClaw (Agent 框架 + 多渠道 + 生态)
 ```
 
-## 📊 选择指南
-
-| 场景 | 推荐方案 |
-|------|----------|
-| 简单问答 | LLM 直接调用 |
-| 标准化任务（如数据ETL） | Workflow |
-| 需要外部数据 | Function Call |
-| 多平台工具复用 | MCP |
-| 特定领域能力 | Skill |
-| 复杂自主任务 | Agent |
-| 生产环境多渠道部署 | OpenClaw |
-
 ## 📖 参考资料
 
 - [OpenAI API 文档](https://platform.openai.com/docs)
 - [Anthropic MCP](https://modelcontextprotocol.io)
-- [LangChain](https://python.langchain.com)
 - [OpenClaw](https://openclaw.ai)
 
 ## 📄 License
